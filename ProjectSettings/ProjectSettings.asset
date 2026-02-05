@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: cb99a7f893061e041a6620fb3381228a
+  productGUID: 90eeae0e6f7c7404fb669ce2f87e768b
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: week01
+  productName: My project (5)
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -846,14 +846,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: week01
+  metroPackageName: My project (5)
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: week01
+  metroApplicationDescription: My project (5)
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -922,13 +922,13 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 1fb2e7de-f497-4cac-b0fd-789e03e49886
+  cloudProjectId: 4ce598ad-f8d8-4394-8bf8-1d80028faad3
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: week01
-  organizationId: wachirawadee
+  projectName: My project (5) 2026-01-17_09-32-49
+  organizationId: unity_1882e60b00efe36355c4
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
