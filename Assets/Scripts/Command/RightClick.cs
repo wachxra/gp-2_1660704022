@@ -33,6 +33,20 @@ public class RightClick : MonoBehaviour
     {
         if (c != null)
             c.WalkToPosition(hit.point);
+
+        CreateVFX(hit.point,VFXManager.Instance.DoubleRingMarker);
+    }
+
+    private void CommandToAttack(RaycastHit hit, Character c)
+    {
+        if (c == null)
+            return;
+
+        Character target = hit.collider.GetComponent<Character>();
+        Debug.Log("Attack");
+
+        if (target != null)
+            c.ToAttackCharacter(target);
     }
 
     private void TryCommand(Vector2 screenPos)
@@ -42,11 +56,21 @@ public class RightClick : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
-            switch(hit.collider.tag)
+            switch (hit.collider.tag)
             {
                 case "Ground":
-                    CommandToWalk(hit,leftClick.CurChar); break;
-            }    
+                    CommandToWalk(hit, leftClick.CurChar); break;
+                case "Enemy":
+                    CommandToAttack(hit, leftClick.CurChar); break;
+            }  
         }
     }    
+
+    private void CreateVFX(Vector3 pos,GameObject vfxPrefab)
+    {
+        if (vfxPrefab == null)
+            return;
+
+        Instantiate(vfxPrefab,pos + new Vector3(0f,0.1f,0f),Quaternion.identity);
+    }
 }

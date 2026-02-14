@@ -2590,7 +2590,7 @@ GameObject:
   - component: {fileID: 3544404395629819782}
   m_Layer: 0
   m_Name: Character_Hero_01
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2709,6 +2709,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hero
   state: 0
   ringSelection: {fileID: 8824200083665941024}
+  curHP: 10
+  curCharTarget: {fileID: 0}
+  attackRange: 2
+  attackDamage: 3
+  attackCooldown: 2
+  attackTimer: 0
 --- !u!114 &3544404395629819782
 MonoBehaviour:
   m_ObjectHideFlags: 0

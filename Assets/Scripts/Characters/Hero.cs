@@ -7,7 +7,14 @@ public class Hero : Character
         switch(state)
         {
             case CharState.Walk:
-                WalkUpdate(); break;
+                WalkUpdate();
+                break;
+            case CharState.WalkToEnemy:
+                WalkToEnemyUpdate(); 
+                break;
+            case CharState.Attack:
+                AttackUpdate();
+                break;
         }    
     }
 }

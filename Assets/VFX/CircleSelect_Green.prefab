@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3508981945991229934}
   - component: {fileID: 8712282144794287364}
   m_Layer: 0
-  m_Name: Circle Select 3
+  m_Name: CircleSelect_Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
