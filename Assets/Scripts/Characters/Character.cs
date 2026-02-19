@@ -33,15 +33,20 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected Character curCharTarget;
+    public Character CurCharTarget { get { return curCharTarget; } set { curCharTarget = value; } }
 
     [SerializeField]
     protected float attackRange = 2f;
+    public float AttackRange { get { return attackRange; }}
     [SerializeField]
     protected int attackDamage = 3;
     [SerializeField]
     protected float attackCooldown = 2f;
     [SerializeField]
     protected float attackTimer = 0f;
+    [SerializeField]
+    protected float findingRange = 20f;
+    public float FindingRange { get { return findingRange; } }    
 
     private void Awake()
     {
@@ -171,6 +176,16 @@ public abstract class Character : MonoBehaviour
             curHP = 0;
             Die();
         }    
+    }
+
+    public bool IsMyEnemy(string targetTag)
+    {
+        string myTag = gameObject.tag;
+        if ((myTag == "Hero" || myTag == "Player") && targetTag == "Enemy")
+            return true;
+        if (myTag == "Enemy" && (targetTag == "Hero" || targetTag == "Player"))
+            return true;
+        return false;
     }
 
     protected virtual IEnumerator DestroyObject()

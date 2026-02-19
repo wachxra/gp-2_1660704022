@@ -2588,7 +2588,7 @@ GameObject:
   - component: {fileID: 5086259040346664385}
   - component: {fileID: 5760017746095884136}
   - component: {fileID: 3544404395629819782}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Character_Hero_01
   m_TagString: Hero
   m_Icon: {fileID: 0}
