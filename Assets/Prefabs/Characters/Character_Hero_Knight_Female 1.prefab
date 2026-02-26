@@ -1221,6 +1221,7 @@ GameObject:
   - component: {fileID: 7623823280531889066}
   - component: {fileID: 1082376394459230195}
   - component: {fileID: -2359771763410619026}
+  - component: {fileID: 4358155647975502294}
   m_Layer: 6
   m_Name: Character_Hero_Knight_Female 1
   m_TagString: Untagged
@@ -1342,6 +1343,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hero
   state: 0
   ringSelection: {fileID: 8289323561083087763}
+  curHP: 10
+  curCharTarget: {fileID: 0}
+  attackRange: 2
+  attackDamage: 3
+  attackCooldown: 2
+  attackTimer: 0
+  findingRange: 20
+  magicSkills: []
+  curMagicCast:
+    id: 0
+    name: 
+    range: 0
+    power: 0
+    loadTime: 0
+    shootTime: 0
+    loadId: 0
+    shootId: 0
+  isMagicMode: 0
 --- !u!114 &-2359771763410619026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,6 +1373,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d423a6cc08db75e468f2bbd6adbc8bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharAnimation
+--- !u!114 &4358155647975502294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6cea92c7e85544e81bf69b4bce5a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAI
+  curEnemy: {fileID: 0}
 --- !u!1 &133228
 GameObject:
   m_ObjectHideFlags: 0

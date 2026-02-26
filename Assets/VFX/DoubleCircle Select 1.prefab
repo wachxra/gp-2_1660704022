@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6900948150650273093}
   - component: {fileID: 7652380723826810077}
   - component: {fileID: 2175807076351003732}
-  - component: {fileID: -2870646369703518228}
+  - component: {fileID: 6252142759220992647}
   m_Layer: 0
   m_Name: DoubleCircle Select 1
   m_TagString: Untagged
@@ -224,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.028217502, b: 0, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.12061596, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1038,7 +1038,7 @@ ParticleSystem:
     enabled: 1
     curve:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 1
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1047,21 +1047,21 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 4.5977273
-          outSlope: 4.5977273
+          inSlope: 4.017288
+          outSlope: 4.017288
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.025316456
+          inWeight: 0
+          outWeight: 0.037414964
         - serializedVersion: 3
-          time: 0.9957983
-          value: 0
-          inSlope: -2.8977275
-          outSlope: -2.8977275
+          time: 1
+          value: 0.0051546358
+          inSlope: -3.8102067
+          outSlope: -3.8102067
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.039381154
-          outWeight: 0.33333334
+          inWeight: 0.12048449
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -1091,7 +1091,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 1
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1144,7 +1144,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 2
+      minMaxState: 1
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1367,8 +1367,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0, g: 1, b: 0.9033842, a: 1}
+        key1: {r: 0, g: 1, b: 0.54320717, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1392,7 +1392,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -4895,7 +4895,7 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
---- !u!114 &-2870646369703518228
+--- !u!114 &6252142759220992647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4904,7 +4904,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6044037666520248651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d27b92e827c8448955099cb35a74ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 87b02271b04626f4b8d6bc78e5fec587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveMarker
   lifeTime: 1

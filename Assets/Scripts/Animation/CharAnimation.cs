@@ -4,7 +4,6 @@ public class CharAnimation : MonoBehaviour
 {
    private Character character;
 
-
     private void Start()
     {
         character = GetComponent<Character>();
@@ -25,6 +24,7 @@ public class CharAnimation : MonoBehaviour
                 break;
             case CharState.Walk:
             case CharState.WalkToEnemy:
+            case CharState.WalkToMagicCast:
                 c.Anim.SetBool("IsWalk", true);
                 break;
         }

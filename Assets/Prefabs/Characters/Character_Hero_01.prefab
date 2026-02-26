@@ -2588,6 +2588,7 @@ GameObject:
   - component: {fileID: 5086259040346664385}
   - component: {fileID: 5760017746095884136}
   - component: {fileID: 3544404395629819782}
+  - component: {fileID: 510123971863924329}
   m_Layer: 6
   m_Name: Character_Hero_01
   m_TagString: Hero
@@ -2715,6 +2716,18 @@ MonoBehaviour:
   attackDamage: 3
   attackCooldown: 2
   attackTimer: 0
+  findingRange: 20
+  magicSkills: []
+  curMagicCast:
+    id: 0
+    name: 
+    range: 0
+    power: 0
+    loadTime: 0
+    shootTime: 0
+    loadId: 0
+    shootId: 0
+  isMagicMode: 0
 --- !u!114 &3544404395629819782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2727,6 +2740,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d423a6cc08db75e468f2bbd6adbc8bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharAnimation
+--- !u!114 &510123971863924329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809938138511705861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6cea92c7e85544e81bf69b4bce5a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAI
+  curEnemy: {fileID: 0}
 --- !u!1 &6048502233669716103
 GameObject:
   m_ObjectHideFlags: 0

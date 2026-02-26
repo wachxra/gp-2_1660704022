@@ -883,6 +883,7 @@ GameObject:
   - component: {fileID: -7325159235234909032}
   - component: {fileID: 1588708632282813870}
   - component: {fileID: 2540882430813531753}
+  - component: {fileID: 8935568247328483175}
   m_Layer: 6
   m_Name: Character_Goblin_Male 1
   m_TagString: Untagged
@@ -957,6 +958,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   state: 0
+  ringSelection: {fileID: 0}
+  curHP: 10
+  curCharTarget: {fileID: 0}
+  attackRange: 2
+  attackDamage: 3
+  attackCooldown: 2
+  attackTimer: 0
+  findingRange: 20
+  magicSkills: []
+  curMagicCast:
+    id: 0
+    name: 
+    range: 0
+    power: 0
+    loadTime: 0
+    shootTime: 0
+    loadId: 0
+    shootId: 0
+  isMagicMode: 0
 --- !u!114 &-7325159235234909032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,6 +1034,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8935568247328483175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6cea92c7e85544e81bf69b4bce5a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAI
+  curEnemy: {fileID: 0}
 --- !u!1 &115104
 GameObject:
   m_ObjectHideFlags: 0
