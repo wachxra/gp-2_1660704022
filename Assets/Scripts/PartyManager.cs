@@ -23,22 +23,22 @@ public class PartyManager : MonoBehaviour
         {
             c.charInit(VFXManager.Instance,UIManager.instance);
         }
-
         SelectSingleHero(0);
 
-        // Challenge: no.2 (Adjust: Added 3 skills for each hero)
+        members[0].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[0]));
+        members[1].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[1]));
 
-        // Hero 1
-        members[0].MagicSkills.Add(new Magic(0, "PowerDraw", 10f, 20, 3f, 1f, 2, 2));
-        members[0].MagicSkills.Add(new Magic(1, "IceBolt", 8f, 25, 2f, 0.5f, 3, 3));
-        members[0].MagicSkills.Add(new Magic(2, "Thunder", 12f, 40, 4f, 1f, 4, 4));
-        members[0].MagicSkills.Add(new Magic(3, "WindSlash", 9f, 22, 2.5f, 0.7f, 7, 7));
+        InventoryManager.instance.AddItem(members[0], 0);
+        InventoryManager.instance.AddItem(members[0], 1);
+        InventoryManager.instance.AddItem(members[0], 2);
+        InventoryManager.instance.AddItem(members[0], 3);
+        InventoryManager.instance.AddItem(members[0], 4);
 
-        // Hero 2
-        members[1].MagicSkills.Add(new Magic(0, "Fireball", 10f, 30, 3f, 1f, 0, 1));
-        members[1].MagicSkills.Add(new Magic(1, "DarkSlash", 6f, 20, 2f, 0.5f, 5, 5));
-        members[1].MagicSkills.Add(new Magic(2, "ShadowBlast", 15f, 50, 5f, 1.5f, 6, 6));
-        members[1].MagicSkills.Add(new Magic(3, "BloodStrike", 11f, 28, 3.5f, 0.8f, 8, 8));
+        InventoryManager.instance.AddItem(members[1], 5);
+        InventoryManager.instance.AddItem(members[1], 6);
+        InventoryManager.instance.AddItem(members[1], 7);
+        InventoryManager.instance.AddItem(members[1], 8);
+        InventoryManager.instance.AddItem(members[1], 9);
 
         UIManager.instance.ShowMagicToggles();
     }

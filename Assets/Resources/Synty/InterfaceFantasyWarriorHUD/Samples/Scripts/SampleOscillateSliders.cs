@@ -25,7 +25,7 @@ namespace Synty.Interface.FantasyWarriorHUD.Samples
         public float speed = 1f;
         public float offset = 0.5f;
 
-        /*private void Reset()
+        private void Reset()
         {
             sliders = FindObjectsOfType<Slider>().ToList();
         }
@@ -35,19 +35,6 @@ namespace Synty.Interface.FantasyWarriorHUD.Samples
             if (autoGetSliders)
             {
                 sliders = FindObjectsOfType<Slider>().ToList();
-            }
-        }*/
-
-        private void Reset()
-        {
-            sliders = FindObjectsByType<Slider>(FindObjectsSortMode.None).ToList();
-        }
-
-        private void Start()
-        {
-            if (autoGetSliders)
-            {
-                sliders = FindObjectsByType<Slider>(FindObjectsSortMode.None).ToList();
             }
         }
 

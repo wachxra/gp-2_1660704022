@@ -65,6 +65,20 @@ public abstract class Character : MonoBehaviour
     public bool IsMagicMode
     { get { return isMagicMode; } set { isMagicMode = value; } }
 
+    [Header("Inventory")]
+    [SerializeField]
+    protected Item[] inventoryItems;
+    public Item[] InventoryItems
+    { get { return inventoryItems; } set { inventoryItems = value; } }
+
+    [SerializeField]
+    protected Item mainWeapon;
+    public Item MainWeapon { get { return mainWeapon; } set { mainWeapon = value; } }
+
+    [SerializeField]
+    protected Item shield;
+    public Item Shield { get { return shield; } set { shield = value; } }
+
     protected VFXManager vfxManager;
     protected UIManager uiManager;
 
@@ -257,9 +271,7 @@ public abstract class Character : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Challenge: no.1 (Adjust: ShootMagicCast() and LoadMagicCast())
-
-    /*private IEnumerator ShootMagicCast(Magic curMagicCast)
+    /* private IEnumerator ShootMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
             vfxManager.ShootMagic(curMagicCast.ShootID,
@@ -274,9 +286,9 @@ public abstract class Character : MonoBehaviour
         SetState(CharState.Idle);
         if (uiManager != null)
             uiManager.IsOnCurToggleMagic(false);
-    }
+    }*/
 
-    private IEnumerator LoadMagicCast(Magic curMagicCast)
+    /*private IEnumerator LoadMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
             vfxManager.LoadMagic(curMagicCast.LoadID,
@@ -288,6 +300,7 @@ public abstract class Character : MonoBehaviour
         StartCoroutine(ShootMagicCast(curMagicCast));
     }*/
 
+    // Hot Fixed
     private IEnumerator ShootMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
@@ -314,6 +327,7 @@ public abstract class Character : MonoBehaviour
             uiManager.IsOnCurToggleMagic(false);
     }
 
+    // Hot Fixed
     private IEnumerator LoadMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
@@ -345,7 +359,9 @@ public abstract class Character : MonoBehaviour
     public void charInit(VFXManager vfxM,UIManager uiM)
     {
         vfxManager = vfxM;
-        uiManager = uiM;    
+        uiManager = uiM;
+
+        inventoryItems = new Item[16];
     }
   
 }
