@@ -37,6 +37,11 @@ public class UIManager : MonoBehaviour
         instance = this;    
     }
 
+    private void Start()
+    {
+        InitSlots();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -156,6 +161,7 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
     public void ShowInventory()
     {
         if (PartyManager.instance.SelectChars.Count <= 0)
@@ -171,7 +177,21 @@ public class UIManager : MonoBehaviour
             {
                 GameObject itemObj = Instantiate(itemUIPrefab,slots[i].transform);
                 itemObj.GetComponent<Image>().sprite = hero.InventoryItems[i].Icon;
+
+                ItemDrag itemDrag = itemObj.GetComponent<ItemDrag>();
+
+                itemDrag.Item = hero.InventoryItems[i];
+                itemDrag.IconParent = slots[i].transform;
+                itemDrag.Image.sprite = hero.InventoryItems[i].Icon;
             }
+        }
+    }
+
+    private void InitSlots()
+    {
+        for (int i = 0; i < InventoryManager.MAXSLOT; i++)
+        {
+            slots[i].GetComponent<InventorySlot>().ID = i;
         }
     }
 }

@@ -37,4 +37,62 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("Inventory Full");
         return false;
     }
+
+    public void SaveItemInBag(int index, Item item)
+    {
+        if (PartyManager.instance.SelectChars.Count == 0)
+        {
+            return;
+        }
+
+        PartyManager.instance.SelectChars[0].InventoryItems[index] = item;
+    }
+
+    public void RemoveItemInBag(int index)
+    {
+        if (PartyManager.instance.SelectChars.Count == 0)
+            return;
+
+        PartyManager.instance.SelectChars[0].InventoryItems[index] = null;
+    }
+
+    void SpawnDropItem(Item item, Vector3 pos)
+    {
+        int id;
+
+        switch (item.Type)
+        {
+            case ItemType.Consumable:
+                id = 1;
+                break;
+            default:
+                id = 0;
+                break;
+        }
+
+        GameObject itemObj = Instantiate(ItemPrefabs[id], pos , Quaternion.identity);
+        itemObj.AddComponent<ItemPick>();
+
+        MeshCollider meshCol = itemObj.GetComponent<MeshCollider>();
+        if (meshCol != null)
+        {
+            Bounds bounds = meshCol.bounds;
+            float bottomY = bounds.min.y;
+
+            Vector3 adjust = new Vector3(0, pos.y - bottomY, 0);
+            itemObj.transform.position += adjust;
+        }
+
+        ItemPick itemPick = itemObj.GetComponent<ItemPick>();
+        itemPick.Init(item,instance,PartyManager.instance);
+    }
+
+    public void SpawnDropInventory(Item[] items, Vector3 pos)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+                SpawnDropItem(items[i], pos);
+        }
+    }
 }
