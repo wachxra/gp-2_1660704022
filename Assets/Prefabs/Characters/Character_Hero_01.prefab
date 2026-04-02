@@ -2721,6 +2721,7 @@ MonoBehaviour:
   curMagicCast:
     id: 0
     name: 
+    icon: {fileID: 0}
     range: 0
     power: 0
     loadTime: 0
@@ -2728,6 +2729,28 @@ MonoBehaviour:
     loadId: 0
     shootId: 0
   isMagicMode: 0
+  inventoryItems: []
+  mainWeapon:
+    id: 0
+    itemName: 
+    type: 0
+    icon: {fileID: 0}
+    power: 0
+    prefabID: 0
+  shield:
+    id: 0
+    itemName: 
+    type: 0
+    icon: {fileID: 0}
+    power: 0
+    prefabID: 0
+  maxHP: 100
+  shieldHand: {fileID: 5014591412303639360}
+  shieldObj: {fileID: 0}
+  defensePower: 0
+  weaponHand: {fileID: 4309776967218552387}
+  weaponObj: {fileID: 0}
+  weaponPower: 0
 --- !u!114 &3544404395629819782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5100,6 +5123,10 @@ PrefabInstance:
     - target: {fileID: 174694, guid: c3ca42d7e0839324c9b03307f958fb4f, type: 3}
       propertyPath: m_Name
       value: Magic-Gem_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 174694, guid: c3ca42d7e0839324c9b03307f958fb4f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 414092, guid: c3ca42d7e0839324c9b03307f958fb4f, type: 3}
       propertyPath: m_LocalScale.x

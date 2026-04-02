@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd41747bf4430240a3bf1e5529e5048, type: 3}
   m_Name: 002_ShieldA
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  id: 3
+  id: 2
   itemName: ShieldA
-  type: 1
+  type: 2
   icon: {fileID: 21300000, guid: 731edfd942fcf2947918c90a89a17eaa, type: 3}
   power: 0
+  prefabID: 2

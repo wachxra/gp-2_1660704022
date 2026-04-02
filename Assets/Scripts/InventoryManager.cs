@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     public ItemData[] ItemData
     {  get { return itemData; } set { itemData = value; } }
 
-    public const int MAXSLOT = 16;
+    public const int MAXSLOT = 18;
 
     public static InventoryManager instance;
 
@@ -46,6 +46,16 @@ public class InventoryManager : MonoBehaviour
         }
 
         PartyManager.instance.SelectChars[0].InventoryItems[index] = item;
+
+        switch(index)
+        {
+            case 16:
+                PartyManager.instance.SelectChars[0].EquipShield(item); 
+                break;
+            case 17:
+                PartyManager.instance.SelectChars[0].EquipWeapon(item); 
+                break;
+        }
     }
 
     public void RemoveItemInBag(int index)
@@ -54,6 +64,16 @@ public class InventoryManager : MonoBehaviour
             return;
 
         PartyManager.instance.SelectChars[0].InventoryItems[index] = null;
+
+        switch(index)
+        {
+            case 16:
+                PartyManager.instance.SelectChars[0].UnEquipShield();
+                break;
+            case 17:
+                PartyManager.instance.SelectChars[0].UnEquipWeapon();
+                break;
+        }
     }
 
     void SpawnDropItem(Item item, Vector3 pos)
@@ -70,7 +90,7 @@ public class InventoryManager : MonoBehaviour
                 break;
         }
 
-        GameObject itemObj = Instantiate(ItemPrefabs[id], pos , Quaternion.identity);
+        GameObject itemObj = Instantiate(ItemPrefabs[id], pos, Quaternion.identity);
         itemObj.AddComponent<ItemPick>();
 
         MeshCollider meshCol = itemObj.GetComponent<MeshCollider>();
@@ -84,7 +104,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         ItemPick itemPick = itemObj.GetComponent<ItemPick>();
-        itemPick.Init(item,instance,PartyManager.instance);
+        itemPick.Init(item, instance, PartyManager.instance);
     }
 
     public void SpawnDropInventory(Item[] items, Vector3 pos)
@@ -93,6 +113,18 @@ public class InventoryManager : MonoBehaviour
         {
             if (items[i] != null)
                 SpawnDropItem(items[i], pos);
+        }
+    }
+
+    public void DrinkConsumableItem(Item item, int slotId)
+    {
+        string s = string.Format("Drink: {0}", item.ItemName);
+        Debug.Log(s);
+
+        if(PartyManager.instance.SelectChars.Count >0)
+        {
+            PartyManager.instance.SelectChars[0].Recovery(item.Power);
+            RemoveItemInBag(slotId);
         }
     }
 }

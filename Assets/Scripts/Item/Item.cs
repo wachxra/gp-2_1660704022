@@ -4,6 +4,8 @@ public enum ItemType
 {
     Consumable,
     Equipment,
+    Shield,
+    Armor,
     Weapon,
     Ammo,
     Quest,
@@ -33,6 +35,10 @@ public class Item
     private int power;
     public int Power { get { return power; } }
 
+    [SerializeField]
+    private int prefabID;
+    public int PrefabID {  get { return prefabID; } }   
+
     public Item(ItemData data)
     {
         id = data.id;
@@ -40,5 +46,6 @@ public class Item
         type = data.type;
         icon = data.icon;
         power = data.power;
+        prefabID = data.prefabID;
     }
 }

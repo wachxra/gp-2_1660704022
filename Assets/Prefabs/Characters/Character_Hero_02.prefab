@@ -806,6 +806,7 @@ MonoBehaviour:
   curMagicCast:
     id: 0
     name: 
+    icon: {fileID: 0}
     range: 0
     power: 0
     loadTime: 0
@@ -813,6 +814,28 @@ MonoBehaviour:
     loadId: 0
     shootId: 0
   isMagicMode: 0
+  inventoryItems: []
+  mainWeapon:
+    id: 0
+    itemName: 
+    type: 0
+    icon: {fileID: 0}
+    power: 0
+    prefabID: 0
+  shield:
+    id: 0
+    itemName: 
+    type: 0
+    icon: {fileID: 0}
+    power: 0
+    prefabID: 0
+  maxHP: 100
+  shieldHand: {fileID: 207703991794951129}
+  shieldObj: {fileID: 0}
+  defensePower: 0
+  weaponHand: {fileID: 3339836790306579688}
+  weaponObj: {fileID: 0}
+  weaponPower: 0
 --- !u!114 &8996156366699709467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,7 +900,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582541676764571684}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b6cea92c7e85544e81bf69b4bce5a58, type: 3}
   m_Name: 
@@ -1176,7 +1199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2586300161025480261
 Transform:
   m_ObjectHideFlags: 0
