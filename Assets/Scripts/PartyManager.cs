@@ -11,6 +11,10 @@ public class PartyManager : MonoBehaviour
     private List<Character> members = new List<Character>();
     public List<Character> Members { get { return members; } }
 
+    [SerializeField]
+    private List<Quest> questList = new List<Quest>();
+    public List<Quest> QuestList { get { return questList; } }
+
     public static PartyManager instance;
 
     private void Awake()
@@ -39,6 +43,7 @@ public class PartyManager : MonoBehaviour
         InventoryManager.instance.AddItem(members[1], 7);
         InventoryManager.instance.AddItem(members[1], 8);
         InventoryManager.instance.AddItem(members[1], 9);
+        //InventoryManager.instance.AddItem(members[1], 10); //Mana potion
 
         UIManager.instance.ShowMagicToggles();
     }

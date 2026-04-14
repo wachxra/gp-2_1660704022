@@ -18,6 +18,23 @@ public class Hero : Character
             case CharState.WalkToMagicCast:
                 WalkToMagicCastUpdate();
                 break;
+            case CharState.WalkToNPC:
+                WalkToNPCUpdate();
+                break;
         }    
+    }
+    protected void WalkToNPCUpdate()
+    {
+        float distance = Vector3.Distance(transform.position, curCharTarget.transform.position);
+
+        if (distance <= 2f)
+        {
+            navAgent.isStopped = true;
+            SetState(CharState.Idle);
+
+            NPC npc = curCharTarget.GetComponent<NPC>();
+
+            uiManager.PrepareDialogueBox(npc);
+        }
     }
 }
