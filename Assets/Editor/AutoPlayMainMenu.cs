@@ -1,10 +1,17 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 
 [InitializeOnLoad]
 public static class AutoPlayMainMenu
 {
+    private const string BootstrapScenePath =
+        "Assets/Scenes/MainMenu.unity";
+
+    private const string LastSceneKey =
+        "PlayFromMainMenu_LastScenePath";
+
     static AutoPlayMainMenu()
     {
         EditorApplication.playModeStateChanged += OnPlayModeChanged;
@@ -14,13 +21,38 @@ public static class AutoPlayMainMenu
     {
         if (state == PlayModeStateChange.ExitingEditMode)
         {
-            string mainMenuPath = "Assets/Scenes/MainMenu.unity";
+            string currentScenePath =
+                EditorSceneManager.GetActiveScene().path;
 
-            if (SceneManager.GetActiveScene().path != mainMenuPath)
+            if (currentScenePath == BootstrapScenePath)
+                return;
+
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
             {
-                EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
-                EditorSceneManager.OpenScene(mainMenuPath);
+                EditorApplication.isPlaying = false;
+                return;
             }
+
+            EditorPrefs.SetString(LastSceneKey, currentScenePath);
+
+            EditorSceneManager.OpenScene(BootstrapScenePath);
+        }
+
+        if (state == PlayModeStateChange.EnteredEditMode)
+        {
+            string lastScenePath =
+                EditorPrefs.GetString(LastSceneKey, "");
+
+            if (string.IsNullOrEmpty(lastScenePath))
+                return;
+
+            if (EditorSceneManager.GetActiveScene().path == lastScenePath)
+                return;
+
+            EditorSceneManager.OpenScene(lastScenePath);
+
+            EditorPrefs.DeleteKey(LastSceneKey);
         }
     }
 }
+#endif
