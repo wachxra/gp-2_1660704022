@@ -138,8 +138,8 @@ public class LeftClick : MonoBehaviour
 
                 UIManager.instance.ToggleAvatar[i].isOn = true;
             }
-            boxSelection.sizeDelta = new Vector2(0, 0);
         }
-    }
 
+        boxSelection.sizeDelta = new Vector2(0, 0);
+    }
 }
