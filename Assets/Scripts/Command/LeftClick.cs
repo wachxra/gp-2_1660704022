@@ -116,27 +116,33 @@ public class LeftClick : MonoBehaviour
 
         oldAnchoredPos = boxSelection.anchoredPosition;
     }
-    
+
     private void ReleaseSelectionBox(Vector2 mousePos)
     {
-        Vector2 corner1;
-        Vector2 corner2;
-
         boxSelection.gameObject.SetActive(false);
 
-        corner1 = oldAnchoredPos - (boxSelection.sizeDelta / 2);
-        corner2 = oldAnchoredPos + (boxSelection.sizeDelta / 2);
+        Vector2 corner1 = boxSelection.anchoredPosition - (boxSelection.sizeDelta / 2);
+        Vector2 corner2 = boxSelection.anchoredPosition + (boxSelection.sizeDelta / 2);
 
-        foreach (Character member in PartyManager.instance.Members)
+        for (int m = 0; m < PartyManager.instance.Members.Count; m++)
         {
+            Character member = PartyManager.instance.Members[m];
+
             Vector2 unitPos = cam.WorldToScreenPoint(member.transform.position);
+
             if ((unitPos.x > corner1.x && unitPos.x < corner2.x)
                 && (unitPos.y > corner1.y && unitPos.y < corner2.y))
             {
                 Debug.Log($"Found in box: {member.name}");
-                int i = PartyManager.instance.FindIndexFromClass(member);
 
-                UIManager.instance.ToggleAvatar[i].isOn = true;
+                if (!PartyManager.instance.SelectChars.Contains(member))
+                {
+                    PartyManager.instance.SelectChars.Add(member);
+                    member.ToggleRingSelection(true);
+                }
+
+                int i = PartyManager.instance.FindIndexFromClass(member);
+                UIManager.instance.ToggleAvatar[i].SetIsOnWithoutNotify(true);
             }
         }
 

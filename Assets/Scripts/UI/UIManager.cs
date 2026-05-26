@@ -559,8 +559,6 @@ public class UIManager : MonoBehaviour
 
             if (charPanel.activeInHierarchy)
             {
-                PartyManager.instance.SelectChars.Clear();
-                PartyManager.instance.SelectChars.Add(PartyManager.instance.Members[i]);
                 ShowCharPanel();
             }
         }
