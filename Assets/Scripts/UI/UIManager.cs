@@ -214,6 +214,25 @@ public class UIManager : MonoBehaviour
             togglePauseUnpause.isOn = !togglePauseUnpause.isOn;
     }
 
+    private void CloseAllPanels()
+    {
+        inventoryPanel.SetActive(false);
+        itemDialog.SetActive(false);
+        npcDialoguePanel.SetActive(false);
+        RewardPanel.SetActive(false);
+        charPanel.SetActive(false);
+        partyPanel.SetActive(false);
+        confirmPanel.SetActive(false);
+        shopPanel.SetActive(false);
+
+        blackImage.SetActive(false);
+        grayImage.SetActive(false);
+        downPanel.SetActive(true);
+
+        ClearInventory();
+        ClearCharPanel();
+    }
+
     public void ToggleAi(bool isOn)
     {
         foreach (Character member in PartyManager.instance.Members)
@@ -288,6 +307,8 @@ public class UIManager : MonoBehaviour
     {
         if (!inventoryPanel.activeInHierarchy)
         {
+            CloseAllPanels();
+
             inventoryPanel.SetActive(true);
             blackImage.SetActive(true);
             ShowInventory();
@@ -447,6 +468,11 @@ public class UIManager : MonoBehaviour
 
     private void ToggleDialogueBox(bool flag)
     {
+        if (flag)
+        {
+            CloseAllPanels();
+        }
+
         downPanel.SetActive(!flag);
         npcDialoguePanel.SetActive(flag);
         togglePauseUnpause.isOn = flag;
@@ -609,6 +635,8 @@ public class UIManager : MonoBehaviour
     {
         if (!charPanel.activeInHierarchy)
         {
+            CloseAllPanels();
+
             charPanel.SetActive(true);
             blackImage.SetActive(true);
             ShowCharPanel();
@@ -659,8 +687,15 @@ public class UIManager : MonoBehaviour
 
     public void TogglePartyPanel(bool flag)
     {
+        if (flag)
+        {
+            CloseAllPanels();
+        }
+
         charPanel.SetActive(!flag);
         partyPanel.SetActive(flag);
+        blackImage.SetActive(true);
+
         MapToggleRemove();
         CheckRemoveButton();
     }
@@ -755,7 +790,13 @@ public class UIManager : MonoBehaviour
 
     public void ToggleShopPanel(bool flag)
     {
+        if (flag)
+        {
+            CloseAllPanels();
+        }
+
         shopPanel.SetActive(flag);
+        blackImage.SetActive(flag);
     }
 
     public void PrepareShopPanel(NPC npc, Hero hero)
