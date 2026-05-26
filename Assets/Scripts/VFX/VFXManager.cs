@@ -28,7 +28,6 @@ public class VFXManager : MonoBehaviour
 
     public void LoadMagic(int id,Vector3 posA,float time)
     {
-        //load Magic
         if (magicVFX[id] == null)
             return;
 
@@ -38,7 +37,6 @@ public class VFXManager : MonoBehaviour
 
     public void ShootMagic(int id,Vector3 posA,Vector3 posB,float time)
     {
-        //Shoot Magic
         if(magicVFX[id] == null)
             return;
 

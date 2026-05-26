@@ -8,11 +8,8 @@ public class RightClick : MonoBehaviour
     private Camera cam;
     public LayerMask layerMask;
 
-    //private LeftClick leftClick;
-
     private void Awake()
     {
-        //leftClick = GetComponent<LeftClick>();
     }
 
     private void Start()
@@ -77,6 +74,7 @@ public class RightClick : MonoBehaviour
                 case "Enemy":
                     CommandToAttack(hit, PartyManager.instance.SelectChars); break;
                 case "NPC":
+                case "Hero":
                     CommandTalkToNPC(hit, PartyManager.instance.SelectChars); break;
             }  
         }

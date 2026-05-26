@@ -26,7 +26,13 @@ public class QuestManager : MonoBehaviour
     }
     private void Start()
     {
-        AddQuestToNPC(npcPerson[0],questData[0]); //Give Golem - Give Potion Quest
+        foreach (Character npc in npcPerson)
+        {
+            npc.CharInit(VFXManager.Instance, UIManager.instance,
+                InventoryManager.instance,PartyManager.instance);
+        }
+
+        AddQuestToNPC(npcPerson[0],questData[0]);
     }
 
     private void AddQuestToNPC(NPC npc, QuestData questData)
@@ -72,7 +78,7 @@ public class QuestManager : MonoBehaviour
             return false;
     }
 
-    public string NextDialogue(int i) //Map with buttonNext
+    public string NextDialogue(int i)
     {
         if (i < curQuest.QuestDialogue.Length)
             return curQuest.QuestDialogue[i];
@@ -80,12 +86,12 @@ public class QuestManager : MonoBehaviour
             return "";
     }
 
-    public void RejectQuest() //map with ButtonReject
+    public void RejectQuest()
     {
         curQuest.Status = QuestStatus.Reject;
     }
 
-    public void AcceptQuest() //Map with ButtonAccept
+    public void AcceptQuest()
     {
         curQuest.Status = QuestStatus.InProgress;
         PartyManager.instance.QuestList.Add(curQuest);
@@ -119,5 +125,7 @@ public class QuestManager : MonoBehaviour
         }
         return false;
     } 
+
+
 }
                                                             

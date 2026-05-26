@@ -2708,6 +2708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efdad00f400a674ea83a33ecedf81b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hero
+  avatarPic: {fileID: 21300000, guid: a18801cd3ae3ff646b57b176a1d6b631, type: 3}
+  charName: 
   state: 0
   ringSelection: {fileID: 8824200083665941024}
   curHP: 10
@@ -2737,6 +2739,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     power: 0
     prefabID: 0
+    normalPrice: 0
   shield:
     id: 0
     itemName: 
@@ -2744,6 +2747,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     power: 0
     prefabID: 0
+    normalPrice: 0
   maxHP: 100
   shieldHand: {fileID: 5014591412303639360}
   shieldObj: {fileID: 0}
@@ -2751,6 +2755,16 @@ MonoBehaviour:
   weaponHand: {fileID: 4309776967218552387}
   weaponObj: {fileID: 0}
   weaponPower: 0
+  prefabId: 0
+  exp: 0
+  level: 0
+  nextExp: 0
+  strength: 0
+  dexterity: 0
+  constitution: 0
+  intelligence: 0
+  wisdom: 0
+  charisma: 0
 --- !u!114 &3544404395629819782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2770,7 +2784,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5809938138511705861}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b6cea92c7e85544e81bf69b4bce5a58, type: 3}
   m_Name: 

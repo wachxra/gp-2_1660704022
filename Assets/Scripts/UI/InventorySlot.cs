@@ -23,7 +23,6 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        //GetItemA
         GameObject objA = eventData.pointerDrag;
         ItemDrag itemDragA = objA.GetComponent<ItemDrag>();
         InventorySlot slotA = itemDragA.IconParent.GetComponent<InventorySlot>();
@@ -34,7 +33,6 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                 return;
         }
 
-        //ThereIsAnItemBInSlotB
         if (transform.childCount > 0)
         {
             GameObject objB = transform.GetChild(0).gameObject;
@@ -46,21 +44,17 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                     return;
             }
 
-            //Remove Item A From Slot A
             inventoryManager.RemoveItemInBag(slotA.ID);
 
-            //SetItemBOnSlotA
             itemDragB.transform.SetParent(itemDragA.IconParent);
             itemDragB.IconParent = itemDragA.IconParent;
             inventoryManager.SaveItemInBag(slotA.ID, itemDragB.Item);
 
-            //Remove item b from slot b
             inventoryManager.RemoveItemInBag(id);
         }
 
-        else //Slot B is blank
+        else
         {
-            //Remove Item A from slot A
             inventoryManager.RemoveItemInBag(slotA.ID);
         }
 

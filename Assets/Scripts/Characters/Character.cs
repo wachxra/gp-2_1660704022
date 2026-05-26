@@ -25,11 +25,11 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected Sprite avatarPic;
-    public Sprite AvatarPic {  get { return avatarPic; } }
+    public Sprite AvatarPic { get { return avatarPic; } }
 
     [SerializeField]
     protected string charName;
-    public string CharName { get { return charName; } }  
+    public string CharName { get { return charName; } }
 
     [SerializeField]
     protected CharState state;
@@ -41,7 +41,7 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int curHP = 10;
-    public int CurHP { get { return curHP; } }
+    public int CurHP { get { return curHP; } set { curHP = value; } }
 
     [SerializeField]
     protected Character curCharTarget;
@@ -52,6 +52,7 @@ public abstract class Character : MonoBehaviour
     public float AttackRange { get { return attackRange; } }
     [SerializeField]
     protected int attackDamage = 3;
+    public int AttackDamage { get { return attackDamage; } set { attackDamage = value; } }
     [SerializeField]
     protected float attackCooldown = 2f;
     [SerializeField]
@@ -100,6 +101,7 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int defensePower = 0;
+    public int DefensePower { get { return defensePower; } set { defensePower = value; } }
 
     [SerializeField]
     protected Transform weaponHand;
@@ -113,6 +115,7 @@ public abstract class Character : MonoBehaviour
     protected VFXManager vfxManager;
     protected UIManager uiManager;
     protected InventoryManager invManager;
+    protected PartyManager partyManager;
 
     private void Awake()
     {
@@ -160,10 +163,8 @@ public abstract class Character : MonoBehaviour
         if (curHP <= 0 || state == CharState.Die)
             return;
 
-        //Lock target
         curCharTarget = target;
 
-        //Start walking to enemy
         navAgent.SetDestination(target.transform.position);
         navAgent.isStopped = false;
 
@@ -187,7 +188,7 @@ public abstract class Character : MonoBehaviour
         if (distance <= attackRange)
         {
             SetState(CharState.Attack);
-            Attack(); //first Attack
+            Attack();
         }
     }
 
@@ -213,16 +214,13 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    //move to NPC
     public void ToTalkToNPC(Character npc)
     {
         if (curHP <= 0 || state == CharState.Die)
             return;
 
-        //Lock target
         curCharTarget = npc;
 
-        //start walking to enemy
         navAgent.SetDestination(npc.transform.position);
         navAgent.isStopped = false;
 
@@ -234,7 +232,6 @@ public abstract class Character : MonoBehaviour
         transform.LookAt(curCharTarget.transform);
         anim.SetTrigger("Attack");
 
-        //attackLogic
         AttackLogic();
     }
 
@@ -326,36 +323,6 @@ public abstract class Character : MonoBehaviour
         Destroy(gameObject);
     }
 
-    /* private IEnumerator ShootMagicCast(Magic curMagicCast)
-    {
-        if (vfxManager != null)
-            vfxManager.ShootMagic(curMagicCast.ShootID,
-                transform.position, curCharTarget.transform.position,
-                curMagicCast.ShootTime);
-
-        yield return new WaitForSeconds(curMagicCast.ShootTime);
-
-        MagicCastLogic(curMagicCast);
-        isMagicMode = false;
-
-        SetState(CharState.Idle);
-        if (uiManager != null)
-            uiManager.IsOnCurToggleMagic(false);
-    }*/
-
-    /*private IEnumerator LoadMagicCast(Magic curMagicCast)
-    {
-        if (vfxManager != null)
-            vfxManager.LoadMagic(curMagicCast.LoadID,
-                transform.position,
-                curMagicCast.LoadTime);
-
-        yield return new WaitForSeconds(curMagicCast.LoadTime);
-
-        StartCoroutine(ShootMagicCast(curMagicCast));
-    }*/
-
-    // Hot Fixed
     private IEnumerator ShootMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
@@ -382,7 +349,6 @@ public abstract class Character : MonoBehaviour
             uiManager.IsOnCurToggleMagic(false);
     }
 
-    // Hot Fixed
     private IEnumerator LoadMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
@@ -413,11 +379,12 @@ public abstract class Character : MonoBehaviour
         StartCoroutine(DestroyObject());
     }
 
-    public void charInit(VFXManager vfxM,UIManager uiM,InventoryManager invM)
+    public void CharInit(VFXManager vfxM,UIManager uiM,InventoryManager invM,PartyManager partyM)
     {
         vfxManager = vfxM;
         uiManager = uiM;
         invManager = invM;
+        partyManager = partyM;
 
         inventoryItems = new Item[InventoryManager.MAXSLOT];
     }
