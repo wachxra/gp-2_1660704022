@@ -34,12 +34,11 @@ public class PartyManager : MonoBehaviour
     }
     private void Start()
     {
-        SelectSingleHero(0);
-
-        InventoryManager.instance.AddItem(members[0], 0);
-        InventoryManager.instance.AddItem(members[0], 1);
-
-        UIManager.instance.ShowMagicToggles();
+        if (members.Count > 0)
+        {
+            SelectSingleHero(0);
+            UIManager.instance.ShowMagicToggles();
+        }
     }
 
     private void Update()
@@ -131,13 +130,32 @@ public class PartyManager : MonoBehaviour
 
     public bool HeroJoinParty(Character hero)
     {
-        if(members.Count >= 6)
+        if (hero == null)
             return false;
 
-        hero.CharInit(VFXManager.Instance, UIManager.instance
-            , InventoryManager.instance, this);
+        if (!hero.CompareTag("Hero"))
+            return false;
+
+        Hero h = hero as Hero;
+        if (h == null)
+            return false;
+
+        if (members.Count >= 6)
+            return false;
+
+        if (members.Contains(hero))
+            return false;
+
+        if (Setting.recruitedHeroPrefabIds.Contains(h.PrefabID))
+            return false;
+
+        Setting.recruitedHeroPrefabIds.Add(h.PrefabID);
+
+        hero.CharInit(VFXManager.Instance, UIManager.instance,
+            InventoryManager.instance, this);
 
         members.Add(hero);
+
         return true;
     }
 
@@ -146,13 +164,17 @@ public class PartyManager : MonoBehaviour
         for (int i = 0; i < members.Count; i++)
         {
             Hero hero = (Hero)members[i];
+
             heroData[i].prefabId = hero.PrefabID;
             heroData[i].curHp = hero.CurHP;
 
+            heroData[i].magicIds.Clear();
+
             for (int j = 0; j < hero.MagicSkills.Count; j++)
             {
-                heroData[i].magicIds[j] = hero.MagicSkills[j].ID;
+                heroData[i].magicIds.Add(hero.MagicSkills[j].ID);
             }
+
             for (int k = 0; k < hero.InventoryItems.Length; k++)
             {
                 if (hero.InventoryItems[k] == null)
@@ -160,6 +182,7 @@ public class PartyManager : MonoBehaviour
                 else
                     heroData[i].inventoryItemIds[k] = hero.InventoryItems[k].ID;
             }
+
             heroData[i].attackDamage = hero.AttackDamage;
             heroData[i].defendsePower = hero.DefensePower;
             heroData[i].exp = hero.Exp;
@@ -173,6 +196,9 @@ public class PartyManager : MonoBehaviour
         int enterId = Setting.enterPointId;
         Vector3 pos = MapManager.instance.EnterPoints[enterId].position;
 
+        members.Clear();
+        selectChars.Clear();
+
         for (int i = 0; i < Setting.partyCount; i++)
         {
             GameObject heroObj =
@@ -181,24 +207,39 @@ public class PartyManager : MonoBehaviour
 
             if (i == 0)
                 heroObj.gameObject.tag = "Player";
+            else
+                heroObj.gameObject.tag = "Hero";
 
             Hero hero = heroObj.GetComponent<Hero>();
-            hero.CharInit(VFXManager.Instance, UIManager.instance,InventoryManager.instance,
-                this);
+
+            hero.CharInit(VFXManager.Instance, UIManager.instance,
+                InventoryManager.instance, this);
+
             hero.CurHP = heroData[i].curHp;
 
             for (int j = 0; j < heroData[i].magicIds.Count; j++)
             {
                 int magicId = heroData[i].magicIds[j];
-                hero.MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[magicId]));
+
+                if (magicId >= 0 && magicId < VFXManager.Instance.MagicData.Length)
+                    hero.MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[magicId]));
             }
 
             for (int k = 0; k < heroData[i].inventoryItemIds.Length; k++)
             {
                 int itemId = heroData[i].inventoryItemIds[k];
+
                 if (itemId != -1)
-                    hero.InventoryItems[k] =
-                        new Item(InventoryManager.instance.ItemData[itemId]);
+                {
+                    Item item = new Item(InventoryManager.instance.ItemData[itemId]);
+                    hero.InventoryItems[k] = item;
+
+                    if (k == 16)
+                        hero.EquipShield(item);
+
+                    if (k == 17)
+                        hero.EquipWeapon(item);
+                }
             }
 
             hero.AttackDamage = heroData[i].attackDamage;
@@ -206,7 +247,11 @@ public class PartyManager : MonoBehaviour
             hero.Exp = heroData[i].exp;
             hero.Level = heroData[i].level;
             hero.NextExp = heroData[i].nextExp;
+
             members.Add(hero);
         }
+
+        if (members.Count > 0)
+            SelectSingleHero(0);
     }
 }

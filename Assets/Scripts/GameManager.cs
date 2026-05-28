@@ -15,33 +15,38 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if(Setting.isNewGame)
+        if (Setting.isNewGame)
         {
             Setting.isNewGame = false;
             GeneratePlayerHero();
             AudioManager.instance.PlayBGM(1);
         }
-        if(Setting.isWarping)
+
+        if (Setting.isWarping)
         {
             Setting.isWarping = false;
             WarpPlayer();
         }
+
+        RemoveAlreadyRecruitedHeroNPCs();
     }
 
     private void GeneratePlayerHero()
     {
+        Setting.recruitedHeroPrefabIds.Clear();
+
         int i = Setting.playerPrefabId;
 
         GameObject heroObj = Instantiate(heroPrefabs[i],
-            new Vector3(44f,10f,35f),Quaternion.identity);
+            new Vector3(44f, 10f, 35f), Quaternion.identity);
 
         heroObj.tag = "Player";
 
         Character hero = heroObj.GetComponent<Character>();
         PartyManager.instance.Members.Add(hero);
 
-        hero.CharInit(VFXManager.Instance,UIManager.instance,
-            InventoryManager.instance,PartyManager.instance);
+        hero.CharInit(VFXManager.Instance, UIManager.instance,
+            InventoryManager.instance, PartyManager.instance);
 
         InventoryManager.instance.AddItem(hero, 0);
         InventoryManager.instance.AddItem(hero, 2);
@@ -50,5 +55,30 @@ public class GameManager : MonoBehaviour
     private void WarpPlayer()
     {
         PartyManager.instance.LoadAllHeroData();
+    }
+
+    private void RemoveAlreadyRecruitedHeroNPCs()
+    {
+        Hero[] heroesInScene = FindObjectsByType<Hero>(FindObjectsSortMode.None);
+
+        foreach (Hero hero in heroesInScene)
+        {
+            if (hero == null)
+                continue;
+
+            if (hero.CompareTag("Player"))
+                continue;
+
+            if (!hero.CompareTag("Hero"))
+                continue;
+
+            if (PartyManager.instance.Members.Contains(hero))
+                continue;
+
+            if (Setting.recruitedHeroPrefabIds.Contains(hero.PrefabID))
+            {
+                Destroy(hero.gameObject);
+            }
+        }
     }
 }

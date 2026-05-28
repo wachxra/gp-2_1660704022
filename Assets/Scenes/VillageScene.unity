@@ -26070,6 +26070,10 @@ PrefabInstance:
       propertyPath: toMapName
       value: ForestScene
       objectReference: {fileID: 0}
+    - target: {fileID: 5257438053435980938, guid: b67dcd00ff62eef47846a74ed0a3ccdc, type: 3}
+      propertyPath: enterPointId
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7372556401508609228, guid: b67dcd00ff62eef47846a74ed0a3ccdc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.11

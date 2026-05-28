@@ -911,8 +911,16 @@ public class UIManager : MonoBehaviour
 
     public void AnswerJoinParty()
     {
-        PartyManager.instance.HeroJoinParty(curHeroToJoin);
-        MapToggleAvatar();
+        if (curHeroToJoin == null)
+            return;
+
+        bool success = PartyManager.instance.HeroJoinParty(curHeroToJoin);
+
+        if (success)
+        {
+            MapToggleAvatar();
+        }
+
         curHeroToJoin = null;
         ToggleDialogueBox(false);
     }
