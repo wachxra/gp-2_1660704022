@@ -23934,7 +23934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6514677628354986408, guid: 6d4003f559442b345a7f8eed56717a6f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42.61
+      value: 39.83
       objectReference: {fileID: 0}
     - target: {fileID: 6514677628354986408, guid: 6d4003f559442b345a7f8eed56717a6f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26068,7 +26068,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5257438053435980938, guid: b67dcd00ff62eef47846a74ed0a3ccdc, type: 3}
       propertyPath: toMapName
-      value: Forest01
+      value: ForestScene
       objectReference: {fileID: 0}
     - target: {fileID: 7372556401508609228, guid: b67dcd00ff62eef47846a74ed0a3ccdc, type: 3}
       propertyPath: m_LocalPosition.x
