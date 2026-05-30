@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: HeroData
   m_EditorClassIdentifier: Assembly-CSharp::HeroData
   prefabId: 0
-  curHp: 0
+  curHp: 10
   magicIds: 
-  inventoryItemIds: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  attackDamage: 0
+  inventoryItemIds: 0000000002000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  attackDamage: 3
   defendsePower: 0
   exp: 0
   level: 0

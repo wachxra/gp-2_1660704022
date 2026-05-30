@@ -2585,7 +2585,7 @@ GameObject:
   - component: {fileID: 5469496563882375852}
   - component: {fileID: 6509173316490985189}
   m_Layer: 6
-  m_Name: NPC_Golem
+  m_Name: NPC_Quest_01
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2599,8 +2599,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4514202608745891066}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 51.34, y: 9.99817, z: 32.37}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2622,7 +2622,7 @@ Transform:
   - {fileID: 7663526775553241424}
   - {fileID: 4080177241147025582}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &3772371845042502993
 Animator:
   serializedVersion: 7
@@ -2633,7 +2633,7 @@ Animator:
   m_GameObject: {fileID: 4514202608745891066}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b69174d668ba02d44b14a084b217670a, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ad151a4262ba9414a934fa8267ac50e7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2715,7 +2715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   avatarPic: {fileID: 21300000, guid: 79b5d2bb642337e4b8d6d598ba8af3d0, type: 3}
-  charName: Ben
+  charName: 
   state: 0
   ringSelection: {fileID: 0}
   curHP: 10

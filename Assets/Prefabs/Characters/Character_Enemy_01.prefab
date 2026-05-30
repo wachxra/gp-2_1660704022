@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 9044362865640428716}
   - component: {fileID: 6151876263861307971}
   m_Layer: 6
-  m_Name: Character_Enemy
+  m_Name: Character_Enemy_01
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7cbac88a629b240b1e8d1ce4a44b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  avatarPic: {fileID: 0}
+  charName: 
   state: 0
   ringSelection: {fileID: 689876796715574038, guid: fbbf3517d576499488a6daf0191c425a, type: 3}
   curHP: 10
@@ -149,6 +151,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     power: 0
     prefabID: 0
+    normalPrice: 0
   shield:
     id: 0
     itemName: 
@@ -156,6 +159,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     power: 0
     prefabID: 0
+    normalPrice: 0
   maxHP: 100
   shieldHand: {fileID: 933356867969487300}
   shieldObj: {fileID: 0}
@@ -163,6 +167,7 @@ MonoBehaviour:
   weaponHand: {fileID: 3463161472912635913}
   weaponObj: {fileID: 0}
   weaponPower: 0
+  expDrop: 0
 --- !u!114 &8241623148612535268
 MonoBehaviour:
   m_ObjectHideFlags: 0
