@@ -372,6 +372,12 @@ public class UIManager : MonoBehaviour
 
     public void SetCurItemInUse(ItemDrag itemDrag, int index)
     {
+        if (itemDrag == null)
+            return;
+
+        if (itemDrag.Item == null)
+            return;
+
         curItemDrag = itemDrag;
         curSlotId = index;
     }
@@ -384,11 +390,23 @@ public class UIManager : MonoBehaviour
 
     public void DeleteItemIcon()
     {
+        if (curItemDrag == null)
+            return;
+
+        if (curItemDrag.Item == null)
+            return;
+
         Destroy(curItemDrag.gameObject);
     }
 
     public void ClickDrinkConsumable()
     {
+        if (curItemDrag == null)
+            return;
+
+        if (curItemDrag.Item == null)
+            return;
+
         InventoryManager.instance.DrinkConsumableItem(curItemDrag.Item, curSlotId);
         DeleteItemIcon();
         ToggleItemDialog(false);
