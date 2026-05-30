@@ -33,6 +33,7 @@ public class QuestManager : MonoBehaviour
         }
 
         AddQuestToNPC(npcPerson[0],questData[0]);
+        AddQuestToNPC(npcPerson[1], questData[0]);
     }
 
     private void AddQuestToNPC(NPC npc, QuestData questData)

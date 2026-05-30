@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   id: 0
   magicName: Power Draw
-  icon: {fileID: 21300000, guid: 452012ebe6d33bc4bbb53a355f77ce63, type: 3}
+  icon: {fileID: 21300000, guid: 9377d029075f5bb4e809ecd25663d81e, type: 3}
   range: 10
   power: 20
   loadTime: 3

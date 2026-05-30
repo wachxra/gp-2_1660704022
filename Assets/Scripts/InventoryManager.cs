@@ -24,9 +24,36 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        AddItemShopToNPC(1, 0);
-        AddItemShopToNPC(1, 3);
-        AddItemShopToNPC(1, 4);
+        AddAllItemsToNPCShop(0);
+        AddAllItemsToNPCShop(1);
+    }
+
+    private void AddAllItemsToNPCShop(int npcId)
+    {
+        if (QuestManager.instance == null)
+            return;
+
+        if (QuestManager.instance.NPCPerson == null)
+            return;
+
+        if (npcId < 0 || npcId >= QuestManager.instance.NPCPerson.Length)
+            return;
+
+        NPC npc = QuestManager.instance.NPCPerson[npcId];
+
+        if (npc == null)
+            return;
+
+        npc.ShopItems.Clear();
+
+        for (int i = 0; i < 16; i++)
+        {
+            if (i >= itemData.Length)
+                break;
+
+            Item item = new Item(itemData[i]);
+            npc.ShopItems.Add(item);
+        }
     }
 
     public bool AddItem(Character character, int id)
@@ -126,19 +153,35 @@ public class InventoryManager : MonoBehaviour
 
     void SpawnDropItem(Item item, Vector3 pos)
     {
-        int id;
+        int dropItemId;
 
         switch (item.Type)
         {
             case ItemType.Consumable:
-                id = 1;
+                dropItemId = 0;
                 break;
+
             default:
-                id = 0;
+                dropItemId = 16;
                 break;
         }
 
-        GameObject itemObj = Instantiate(ItemPrefabs[id], pos, Quaternion.identity);
+        if (dropItemId >= itemData.Length)
+            dropItemId = 0;
+
+        Item dropItem = new Item(itemData[dropItemId]);
+
+        int prefabId = 0;
+
+        if (dropItem.Type == ItemType.Consumable)
+            prefabId = 0;
+        else
+            prefabId = 1;
+
+        if (prefabId >= ItemPrefabs.Length)
+            prefabId = 0;
+
+        GameObject itemObj = Instantiate(ItemPrefabs[prefabId], pos, Quaternion.identity);
         itemObj.AddComponent<ItemPick>();
 
         MeshCollider meshCol = itemObj.GetComponent<MeshCollider>();
@@ -152,7 +195,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         ItemPick itemPick = itemObj.GetComponent<ItemPick>();
-        itemPick.Init(item, instance, PartyManager.instance);
+        itemPick.Init(dropItem, instance, PartyManager.instance);
     }
 
     public void SpawnDropInventory(Item[] items, Vector3 pos)

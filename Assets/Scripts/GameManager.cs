@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
 
         InventoryManager.instance.AddItem(hero, 0);
         InventoryManager.instance.AddItem(hero, 2);
+
+        PartyManager.instance.RandomStartLoadout();
     }
 
     private void WarpPlayer()

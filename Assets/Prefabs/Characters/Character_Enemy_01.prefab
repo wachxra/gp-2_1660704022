@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   avatarPic: {fileID: 0}
-  charName: 
+  charName: Enemy01
   state: 0
   ringSelection: {fileID: 689876796715574038, guid: fbbf3517d576499488a6daf0191c425a, type: 3}
   curHP: 10

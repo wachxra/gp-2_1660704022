@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c023d36c58c3b47b2a2dd754b2ddfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
-  avatarPic: {fileID: 21300000, guid: 79b5d2bb642337e4b8d6d598ba8af3d0, type: 3}
-  charName: 
+  avatarPic: {fileID: 21300000, guid: 1cebfc14b25f785469465ed17834a7de, type: 3}
+  charName: NPC_Shop01
   state: 0
   ringSelection: {fileID: 0}
   curHP: 10

@@ -34,11 +34,13 @@ public class PartyManager : MonoBehaviour
     }
     private void Start()
     {
-        if (members.Count > 0)
+        /*if (members.Count > 0)
         {
             SelectSingleHero(0);
             UIManager.instance.ShowMagicToggles();
         }
+
+        RandomStartLoadout();*/
     }
 
     private void Update()
@@ -196,9 +198,6 @@ public class PartyManager : MonoBehaviour
         int enterId = Setting.enterPointId;
         Vector3 pos = MapManager.instance.EnterPoints[enterId].position;
 
-        members.Clear();
-        selectChars.Clear();
-
         for (int i = 0; i < Setting.partyCount; i++)
         {
             GameObject heroObj =
@@ -207,39 +206,24 @@ public class PartyManager : MonoBehaviour
 
             if (i == 0)
                 heroObj.gameObject.tag = "Player";
-            else
-                heroObj.gameObject.tag = "Hero";
 
             Hero hero = heroObj.GetComponent<Hero>();
-
-            hero.CharInit(VFXManager.Instance, UIManager.instance,
-                InventoryManager.instance, this);
-
+            hero.CharInit(VFXManager.Instance, UIManager.instance, InventoryManager.instance,
+                this);
             hero.CurHP = heroData[i].curHp;
 
             for (int j = 0; j < heroData[i].magicIds.Count; j++)
             {
                 int magicId = heroData[i].magicIds[j];
-
-                if (magicId >= 0 && magicId < VFXManager.Instance.MagicData.Length)
-                    hero.MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[magicId]));
+                hero.MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[magicId]));
             }
 
             for (int k = 0; k < heroData[i].inventoryItemIds.Length; k++)
             {
                 int itemId = heroData[i].inventoryItemIds[k];
-
                 if (itemId != -1)
-                {
-                    Item item = new Item(InventoryManager.instance.ItemData[itemId]);
-                    hero.InventoryItems[k] = item;
-
-                    if (k == 16)
-                        hero.EquipShield(item);
-
-                    if (k == 17)
-                        hero.EquipWeapon(item);
-                }
+                    hero.InventoryItems[k] =
+                        new Item(InventoryManager.instance.ItemData[itemId]);
             }
 
             hero.AttackDamage = heroData[i].attackDamage;
@@ -247,11 +231,94 @@ public class PartyManager : MonoBehaviour
             hero.Exp = heroData[i].exp;
             hero.Level = heroData[i].level;
             hero.NextExp = heroData[i].nextExp;
-
             members.Add(hero);
         }
+    }
 
-        if (members.Count > 0)
-            SelectSingleHero(0);
+    public void RandomStartLoadout()
+    {
+        if (members.Count == 0)
+            return;
+
+        List<int> skillPool = new List<int>();
+
+        for (int i = 0; i < 8; i++)
+        {
+            skillPool.Add(i);
+        }
+
+        List<int> weaponPool = new List<int>();
+
+        for (int i = 0; i < 16; i++)
+        {
+            weaponPool.Add(i);
+        }
+
+        ShuffleList(weaponPool);
+
+        int weaponIndex = 0;
+
+        foreach (Hero hero in members)
+        {
+            hero.MagicSkills.Clear();
+
+            List<int> availableSkills = new List<int>(skillPool);
+            ShuffleList(availableSkills);
+
+            for (int i = 0; i < 4; i++)
+            {
+                int skillId = availableSkills[i];
+                hero.MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[skillId]));
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                if (weaponIndex >= weaponPool.Count)
+                    break;
+
+                int weaponId = weaponPool[weaponIndex];
+                weaponIndex++;
+
+                Item weapon = new Item(InventoryManager.instance.ItemData[weaponId]);
+                AddWeaponToHero(hero, weapon);
+            }
+        }
+
+        SelectSingleHero(0);
+
+        if (selectChars.Count > 0 && selectChars[0].MagicSkills.Count > 0)
+        {
+            selectChars[0].IsMagicMode = true;
+            selectChars[0].CurMagicCast = selectChars[0].MagicSkills[0];
+        }
+
+        UIManager.instance.ShowMagicToggles();
+    }
+
+    private void AddWeaponToHero(Hero hero, Item weapon)
+    {
+        if (hero == null || weapon == null)
+            return;
+
+        for (int i = 0; i < hero.InventoryItems.Length; i++)
+        {
+            if (hero.InventoryItems[i] == null)
+            {
+                hero.InventoryItems[i] = weapon;
+                break;
+            }
+        }
+    }
+
+    private void ShuffleList<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+
+            T temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
     }
 }

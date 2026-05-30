@@ -1447,7 +1447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hero
   avatarPic: {fileID: 21300000, guid: cec7d32c0b6f8314c941e31dc770e597, type: 3}
-  charName: 
+  charName: Hero04
   state: 0
   ringSelection: {fileID: 7449266320977975384}
   curHP: 10
@@ -1497,12 +1497,12 @@ MonoBehaviour:
   exp: 0
   level: 0
   nextExp: 0
-  strength: 0
-  dexterity: 0
-  constitution: 0
-  intelligence: 0
-  wisdom: 0
-  charisma: 0
+  strength: 5
+  dexterity: 5
+  constitution: 5
+  intelligence: 5
+  wisdom: 5
+  charisma: 5
 --- !u!114 &8996156366699709467
 MonoBehaviour:
   m_ObjectHideFlags: 0
