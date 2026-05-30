@@ -59,6 +59,9 @@ public class LeftClick : MonoBehaviour
         int i = PartyManager.instance.FindIndexFromClass(hero);
 
         UIManager.instance.ToggleAvatar[i].isOn = true;
+
+        AudioManager.instance.PlaySFX(0);
+
         return i;
     }
 
@@ -124,6 +127,8 @@ public class LeftClick : MonoBehaviour
         Vector2 corner1 = boxSelection.anchoredPosition - (boxSelection.sizeDelta / 2);
         Vector2 corner2 = boxSelection.anchoredPosition + (boxSelection.sizeDelta / 2);
 
+        bool foundAny = false;
+
         for (int m = 0; m < PartyManager.instance.Members.Count; m++)
         {
             Character member = PartyManager.instance.Members[m];
@@ -143,8 +148,13 @@ public class LeftClick : MonoBehaviour
 
                 int i = PartyManager.instance.FindIndexFromClass(member);
                 UIManager.instance.ToggleAvatar[i].SetIsOnWithoutNotify(true);
+
+                foundAny = true;
             }
         }
+
+        if (foundAny)
+            AudioManager.instance.PlaySFX(0);
 
         boxSelection.sizeDelta = new Vector2(0, 0);
     }

@@ -27,7 +27,7 @@ public class RightClick : MonoBehaviour
         }    
     }
 
-    private void CommandToWalk(RaycastHit hit,List<Character> heroes)
+    private void CommandToWalk(RaycastHit hit, List<Character> heroes)
     {
         foreach (Character h in heroes)
         {
@@ -35,10 +35,12 @@ public class RightClick : MonoBehaviour
                 h.WalkToPosition(hit.point);
         }
 
-        CreateVFX(hit.point,VFXManager.Instance.DoubleRingMarker);
+        AudioManager.instance.PlaySFX(1);
+
+        CreateVFX(hit.point, VFXManager.Instance.DoubleRingMarker);
     }
 
-    private void CommandToAttack(RaycastHit hit, List<Character>heroes)
+    private void CommandToAttack(RaycastHit hit, List<Character> heroes)
     {
         Character target = hit.collider.GetComponent<Character>();
         Debug.Log("Attack" + target);
@@ -47,6 +49,8 @@ public class RightClick : MonoBehaviour
         {
             h.ToAttackCharacter(target);
         }
+
+        AudioManager.instance.PlaySFX(3);
     }
 
     private void CommandTalkToNPC(RaycastHit hit, List<Character> heroes)
@@ -58,6 +62,8 @@ public class RightClick : MonoBehaviour
             return;
 
         heroes[0].ToTalkToNPC(npc);
+
+        AudioManager.instance.PlaySFX(2);
     }
 
     private void TryCommand(Vector2 screenPos)

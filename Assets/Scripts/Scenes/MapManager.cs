@@ -22,11 +22,14 @@ public class MapManager : MonoBehaviour
 
         PartyManager.instance.SaveAllHeroData();
 
-        switch(mapName)
+        AudioManager.instance.PlaySFX(9);
+
+        switch (mapName)
         {
             case "SampleScene":
                 AudioManager.instance.PlayBGM(1);
                 break;
+
             case "Forest01":
                 AudioManager.instance.PlayBGM(3);
                 break;

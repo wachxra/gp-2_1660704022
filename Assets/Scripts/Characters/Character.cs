@@ -232,6 +232,8 @@ public abstract class Character : MonoBehaviour
         transform.LookAt(curCharTarget.transform);
         anim.SetTrigger("Attack");
 
+        AudioManager.instance.PlaySFX(3);
+
         AttackLogic();
     }
 
@@ -300,6 +302,9 @@ public abstract class Character : MonoBehaviour
 
         curHP -= damageAfter;
 
+        if (damageAfter > 0)
+            AudioManager.instance.PlaySFX(6);
+
         if (curHP <= 0)
         {
             curHP = 0;
@@ -325,6 +330,8 @@ public abstract class Character : MonoBehaviour
 
     private IEnumerator ShootMagicCast(Magic curMagicCast)
     {
+        AudioManager.instance.PlaySFX(10);
+
         if (vfxManager != null)
         {
             Vector3 chestOffset = Vector3.up * 1.2f;
@@ -351,6 +358,8 @@ public abstract class Character : MonoBehaviour
 
     private IEnumerator LoadMagicCast(Magic curMagicCast)
     {
+        AudioManager.instance.PlaySFX(8);
+
         if (vfxManager != null)
         {
             Vector3 chestOffset = Vector3.up * 1.2f;
@@ -374,7 +383,9 @@ public abstract class Character : MonoBehaviour
 
         anim.SetTrigger("Die");
 
-        invManager.SpawnDropInventory(inventoryItems,transform.position);
+        AudioManager.instance.PlaySFX(6);
+
+        invManager.SpawnDropInventory(inventoryItems, transform.position);
 
         StartCoroutine(DestroyObject());
     }

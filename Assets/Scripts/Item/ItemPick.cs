@@ -18,8 +18,11 @@ public class ItemPick : MonoBehaviour
 
     void PickUpItem(Character hero)
     {
-        if (inventoryManager.AddItem(hero,Item.ID))
+        if (inventoryManager.AddItem(hero, Item.ID))
+        {
+            AudioManager.instance.PlaySFX(0);
             Destroy(gameObject);
+        }
     }
 
     private void OnMouseDown()

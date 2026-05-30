@@ -46,9 +46,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFX(int i)
+    /*public void PlaySFX(int i)
     {
         if(i < sfx.Length && !sfx[i].isPlaying)
             sfx[i].Play();
+    }*/
+
+    public void PlaySFX(int i)
+    {
+        if (i >= 0 && i < sfx.Length && sfx[i] != null)
+        {
+            sfx[i].PlayOneShot(sfx[i].clip);
+        }
     }
 }

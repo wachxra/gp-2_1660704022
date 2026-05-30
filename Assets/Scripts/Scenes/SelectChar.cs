@@ -49,6 +49,8 @@ public class SelectChar : MonoBehaviour
             curId = 0;
 
         LoadChar();
+
+        AudioManager.instance.PlaySFX(0);
     }
 
     public void SelectPreviousChar()
@@ -59,10 +61,13 @@ public class SelectChar : MonoBehaviour
             curId = heroPrefabs.Length - 1;
 
         LoadChar();
+
+        AudioManager.instance.PlaySFX(0);
     }
 
     public void BackToMainMenu()
     {
+        AudioManager.instance.PlaySFX(0);
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -70,6 +75,9 @@ public class SelectChar : MonoBehaviour
     {
         Setting.playerPrefabId = curId;
         Setting.isNewGame = true;
+
+        AudioManager.instance.PlaySFX(5);
+
         SceneManager.LoadScene("VillageScene");
     }
 }

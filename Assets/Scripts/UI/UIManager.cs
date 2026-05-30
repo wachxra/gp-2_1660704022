@@ -312,12 +312,16 @@ public class UIManager : MonoBehaviour
             inventoryPanel.SetActive(true);
             blackImage.SetActive(true);
             ShowInventory();
+
+            AudioManager.instance.PlaySFX(7);
         }
         else
         {
             inventoryPanel.SetActive(false);
             blackImage.SetActive(false);
             ClearInventory();
+
+            AudioManager.instance.PlaySFX(0);
         }
     }
 
@@ -484,6 +488,8 @@ public class UIManager : MonoBehaviour
         ClearDialogueBox();
         SetupDialoguePanel(npc);
         ToggleDialogueBox(true);
+
+        AudioManager.instance.PlaySFX(2);
     }
 
     public void AnswerNext()
@@ -511,12 +517,14 @@ public class UIManager : MonoBehaviour
     public void AnswerReject()
     {
         QuestManager.instance.RejectQuest();
+        AudioManager.instance.PlaySFX(0);
         ToggleDialogueBox(false);
     }
-    
+
     public void AnswerAccept()
     {
         QuestManager.instance.AcceptQuest();
+        AudioManager.instance.PlaySFX(5);
         ToggleDialogueBox(false);
     }
 
@@ -530,6 +538,7 @@ public class UIManager : MonoBehaviour
             if (QuestManager.instance.NpcGiveReward())
             {
                 Debug.Log("Quest Completed");
+                AudioManager.instance.PlaySFX(5);
                 ToggleDialogueBox(false);
             }
         }
@@ -551,6 +560,8 @@ public class UIManager : MonoBehaviour
         ItemImage.sprite = icon;
         ItemNameText.text = itemName;
         RewardPanel.SetActive(true);
+
+        AudioManager.instance.PlaySFX(5);
     }
 
     public void itemAcceptButton()
@@ -640,12 +651,16 @@ public class UIManager : MonoBehaviour
             charPanel.SetActive(true);
             blackImage.SetActive(true);
             ShowCharPanel();
+
+            AudioManager.instance.PlaySFX(7);
         }
         else
         {
             charPanel.SetActive(false);
             blackImage.SetActive(false);
             ClearCharPanel();
+
+            AudioManager.instance.PlaySFX(0);
         }
     }
 
@@ -793,6 +808,11 @@ public class UIManager : MonoBehaviour
         if (flag)
         {
             CloseAllPanels();
+            AudioManager.instance.PlaySFX(7);
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX(0);
         }
 
         shopPanel.SetActive(flag);
@@ -919,6 +939,7 @@ public class UIManager : MonoBehaviour
         if (success)
         {
             MapToggleAvatar();
+            AudioManager.instance.PlaySFX(5);
         }
 
         curHeroToJoin = null;
@@ -928,6 +949,7 @@ public class UIManager : MonoBehaviour
     public void AnswerNotJoinParty()
     {
         curHeroToJoin = null;
+        AudioManager.instance.PlaySFX(0);
         ToggleDialogueBox(false);
     }
 }
